@@ -5,13 +5,13 @@ import { filterPokemons, favorites } from '../app/pokedeckSlice';
 const ControlBar = () => {
   const dispatch = useDispatch()
   const [pokemonSearch, setPokemonSearch] = useState("");
-  const [favorites, setFavorites] = useState([]);
+
 
   const favoritePokemons = useSelector(favorites);
 
   useEffect(() => {
     setFavorites(favoritePokemons)
-  }, [favoritePokemons])
+  }, [])
 
   const handleSearch = (e) => {
     const {value} = e.target
@@ -32,7 +32,7 @@ const ControlBar = () => {
       </form>
 
       <div className="h-full w-full bg-black">
-        {favorites?.map((pokemon, i) => {
+        {favoritesPokemons?.map((pokemon, i) => {
           <div className="w-full h-20 border-b rounded bg-gray-800/50">
             <h1>{pokemon.name}</h1>
             <div>
