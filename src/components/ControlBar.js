@@ -9,9 +9,6 @@ const ControlBar = () => {
 
   const favoritePokemons = useSelector(favorites);
 
-  useEffect(() => {
-    setFavorites(favoritePokemons)
-  }, [])
 
   const handleSearch = (e) => {
     const {value} = e.target
@@ -32,7 +29,7 @@ const ControlBar = () => {
       </form>
 
       <div className="h-full w-full bg-black">
-        {favoritesPokemons?.map((pokemon, i) => {
+        {favoritePokemons?.map((pokemon, i) => {
           <div className="w-full h-20 border-b rounded bg-gray-800/50">
             <h1>{pokemon.name}</h1>
             <div>
