@@ -16,3 +16,8 @@ code {
     monospace;
 }
 
+.title {
+  font-family: 'Poppins';
+  font: bold;
+  @apply text-sand text-[2rem]
+}
