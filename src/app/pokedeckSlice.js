@@ -96,19 +96,27 @@ export const pokedeckSlice = createSlice({
             state.currentPokemon = action.payload
         },
         setFavorites: (state, action) => {
+            // let tempArr
+            // if(window.localStorage.getItem("favoritePokemons")){
+            //     tempArr = window.localStorage.getItem("favoritePokemons")
+            // } else {
+            //     tempArr = state.favoritePokemons;
+            // }
+            
             let tempArr = state.favoritePokemons;
             const  {payload} = action
             
             let temp = tempArr.filter(pokemon => pokemon == payload )
 
             console.log(temp)
-            
+
             if(temp.length == 0){
                 tempArr.push(payload)
             } else {
                 tempArr = tempArr.filter(pokemon => pokemon != payload)
             }
             state.favoritePokemons = tempArr
+            // window.localStorage.setItem("favoritePokemons", JSON.stringify(tempArr))
             console.log(state.favoritePokemons)
         }
             

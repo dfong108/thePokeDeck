@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useDispatch, useSelector, nanoid } from 'react-redux';
-import { setFavorites } from '../app/pokedeckSlice';
+import { setFavorites, favorites } from '../app/pokedeckSlice';
 
 import {AiFillStar} from 'react-icons/ai';
 
@@ -8,18 +8,28 @@ const DetailsCard = ({ pokemon, pokemon: { name, abilities, height, weight, move
 
     const dispatch = useDispatch();
     const [currentImage, setCurrentImage] = useState(sprites.front_default)
+    const [isFavorite, setIsFavorite] = useState(false)
     const capName = name.toUpperCase();
-    // console.log(pokemon)
+
+    const favoritePokemons = useSelector(favorites)
+
+    useEffect(() => {
+      setIsFavorite(favoritePokemons.includes(pokemon))
+    
+    }, [favoritePokemons])
+    
+
+    console.log(isFavorite)
 
 
   return (
     <div className='z-40 flex-col justify-center items-center md:p-4 p-2 w-[80%] h-[80%] rounded-lg text-zinc-200 font-mono shadow-2xl bg-gray-800/90'>
         <div className='flex justify-between items-center w-full min-h-fit'>
             <h1 className='title w-[100%] text-center'>{capName}</h1>
-            <div className='text-yellow'
+            <div className={isFavorite ? 'text-red cursor-pointer' :  'text-yellow cursor-pointer'}
                 onClick={() => dispatch(setFavorites(pokemon))}
             >
-                <AiFillStar size={20} />
+                <AiFillStar size={40} />
             </div>
         </div>
 {/* ------ SPRITES ------ */}
